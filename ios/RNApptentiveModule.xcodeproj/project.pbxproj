@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0058229830C0295A515A3AAF /* libPods-react-native-apptentive-module.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECA30F19B9371FEC19858774 /* libPods-react-native-apptentive-module.a */; };
 		2FA283BBE1188B43D0FD1720 /* ApptentiveModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FA28C50B63F96D947C2DF9A /* ApptentiveModule.m */; };
 		2FA28D956F9B2452AFFE9C8F /* ApptentiveModule.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FA28C3D00A921DE110559C3 /* ApptentiveModule.h */; };
 /* End PBXBuildFile section */
@@ -26,12 +25,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00D09D8AA2894C4DBA03A913 /* Pods-react-native-apptentive-module.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-apptentive-module.debug.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-apptentive-module/Pods-react-native-apptentive-module.debug.xcconfig"; sourceTree = "<group>"; };
-		2835B9BBB3865FF92DD9714D /* Pods-react-native-apptentive-module.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react-native-apptentive-module.release.xcconfig"; path = "Pods/Target Support Files/Pods-react-native-apptentive-module/Pods-react-native-apptentive-module.release.xcconfig"; sourceTree = "<group>"; };
-		2FA2848A0552B8DE6B55F190 /* libreact-native-apptentive-module.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libreact-native-apptentive-module.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FA2848A0552B8DE6B55F190 /* libRNApptentiveModule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNApptentiveModule.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FA28C3D00A921DE110559C3 /* ApptentiveModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApptentiveModule.h; sourceTree = "<group>"; };
 		2FA28C50B63F96D947C2DF9A /* ApptentiveModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApptentiveModule.m; sourceTree = "<group>"; };
-		ECA30F19B9371FEC19858774 /* libPods-react-native-apptentive-module.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react-native-apptentive-module.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,77 +35,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0058229830C0295A515A3AAF /* libPods-react-native-apptentive-module.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F538D2FCA198B7A649E6313 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ECA30F19B9371FEC19858774 /* libPods-react-native-apptentive-module.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2FA281509CDB3EC77330C929 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2FA2848A0552B8DE6B55F190 /* libreact-native-apptentive-module.a */,
+				2FA2848A0552B8DE6B55F190 /* libRNApptentiveModule.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2FA28594773DDD5F05A2FC66 /* react-native-apptentive-module */ = {
+		2FA28594773DDD5F05A2FC66 /* RNApptentiveModule */ = {
 			isa = PBXGroup;
 			children = (
 				2FA28C3D00A921DE110559C3 /* ApptentiveModule.h */,
 				2FA28C50B63F96D947C2DF9A /* ApptentiveModule.m */,
 			);
-			path = "react-native-apptentive-module";
+			path = RNApptentiveModule;
 			sourceTree = "<group>";
 		};
 		2FA28BD30B7FF514CDC4EF34 = {
 			isa = PBXGroup;
 			children = (
 				2FA281509CDB3EC77330C929 /* Products */,
-				2FA28594773DDD5F05A2FC66 /* react-native-apptentive-module */,
-				E13142D3184CEAF06EF8343F /* Pods */,
-				1F538D2FCA198B7A649E6313 /* Frameworks */,
+				2FA28594773DDD5F05A2FC66 /* RNApptentiveModule */,
 			);
-			sourceTree = "<group>";
-		};
-		E13142D3184CEAF06EF8343F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				00D09D8AA2894C4DBA03A913 /* Pods-react-native-apptentive-module.debug.xcconfig */,
-				2835B9BBB3865FF92DD9714D /* Pods-react-native-apptentive-module.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2FA28FC0325A745D696CAA9C /* react-native-apptentive-module */ = {
+		2FA28FC0325A745D696CAA9C /* RNApptentiveModule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2FA2866E81D7BCB06B3F2181 /* Build configuration list for PBXNativeTarget "react-native-apptentive-module" */;
+			buildConfigurationList = 2FA2866E81D7BCB06B3F2181 /* Build configuration list for PBXNativeTarget "RNApptentiveModule" */;
 			buildPhases = (
-				A4A60523CA46805E3DAE4E0F /* [CP] Check Pods Manifest.lock */,
 				2FA283ABD1EA3FAE12754CA6 /* Sources */,
 				2FA28B75506740C90E4CFFDB /* Frameworks */,
 				2FA28BF18C38B553A1246C57 /* CopyFiles */,
-				B8C276439143218568ADBE29 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "react-native-apptentive-module";
+			name = RNApptentiveModule;
 			productName = "react-native-apptentive-module";
-			productReference = 2FA2848A0552B8DE6B55F190 /* libreact-native-apptentive-module.a */;
+			productReference = 2FA2848A0552B8DE6B55F190 /* libRNApptentiveModule.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -120,7 +94,7 @@
 			attributes = {
 				ORGANIZATIONNAME = MediaMonks;
 			};
-			buildConfigurationList = 2FA28ACCDBDCA22007654106 /* Build configuration list for PBXProject "react-native-apptentive-module" */;
+			buildConfigurationList = 2FA28ACCDBDCA22007654106 /* Build configuration list for PBXProject "RNApptentiveModule" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -132,49 +106,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2FA28FC0325A745D696CAA9C /* react-native-apptentive-module */,
+				2FA28FC0325A745D696CAA9C /* RNApptentiveModule */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A4A60523CA46805E3DAE4E0F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-react-native-apptentive-module-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B8C276439143218568ADBE29 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-react-native-apptentive-module/Pods-react-native-apptentive-module-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/apptentive-ios/ApptentiveResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-react-native-apptentive-module/Pods-react-native-apptentive-module-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2FA283ABD1EA3FAE12754CA6 /* Sources */ = {
@@ -229,6 +164,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../ios/Pods/Headers/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,6 +207,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../ios/Pods/Headers/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -280,7 +217,6 @@
 		};
 		2FA28E9902A90BC7736C35D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00D09D8AA2894C4DBA03A913 /* Pods-react-native-apptentive-module.debug.xcconfig */;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -290,7 +226,6 @@
 		};
 		2FA28FBF59B9458670F6BF16 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2835B9BBB3865FF92DD9714D /* Pods-react-native-apptentive-module.release.xcconfig */;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,15 +236,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FA2866E81D7BCB06B3F2181 /* Build configuration list for PBXNativeTarget "react-native-apptentive-module" */ = {
+		2FA2866E81D7BCB06B3F2181 /* Build configuration list for PBXNativeTarget "RNApptentiveModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2FA28E9902A90BC7736C35D9 /* Debug */,
 				2FA28FBF59B9458670F6BF16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2FA28ACCDBDCA22007654106 /* Build configuration list for PBXProject "react-native-apptentive-module" */ = {
+		2FA28ACCDBDCA22007654106 /* Build configuration list for PBXProject "RNApptentiveModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2FA281E585CCD3314EA80800 /* Debug */,
