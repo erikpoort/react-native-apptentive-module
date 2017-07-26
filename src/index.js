@@ -24,7 +24,7 @@ function presentMessageCenter() {
 
 /**
  * Present the feedback view with custom data
- * @param customData optional
+ * @param customData optional Object
  * @return Promise with success boolean or error
  */
 function presentMessageCenterWithCustomData(customData) {
@@ -33,7 +33,7 @@ function presentMessageCenterWithCustomData(customData) {
 
 /**
  * Log an event to apptentive
- * @param event
+ * @param event String event name
  * @return Promise with success boolean or error
  */
 function engageEvent(event) {
@@ -42,8 +42,8 @@ function engageEvent(event) {
 
 /**
  * Log an event with custom data to apptentive
- * @param event
- * @param customData optional
+ * @param event String event name
+ * @param customData optional Object
  * @return Promise with success boolean or error
  */
 function engageEventWithCustomData(event, customData) {
