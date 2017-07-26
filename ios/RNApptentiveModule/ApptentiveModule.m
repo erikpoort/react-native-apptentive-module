@@ -15,7 +15,7 @@ static NSString *const kRejectCode = @"apptentive";
 {
 	BOOL _initialised;
 }
-RCT_EXPORT_MODULE();
+RCT_EXPORT_MODULE(@"RNApptentiveModule");
 
 #pragma mark - Configuration
 

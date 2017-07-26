@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
-const { ApptentiveModule } = NativeModules;
+const { RNApptentiveModule } = NativeModules;
 
 /**
  * Configure Apptentive using you key and signature.

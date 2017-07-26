@@ -2,7 +2,7 @@
   "name": "react-native-apptentive-module",
   "version": "0.1.1",
   "description": "Apptentive 4.0.0 ReactNative module.",
-  "files": ["scr", "ios"],
+  "files": ["scr", "ios", "android"],
   "main": "src/index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
