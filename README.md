@@ -1,5 +1,6 @@
 # react-native-apptentive-module
 ReactNative module for Apptentive 4.0.0+
+Version 1.0.0
 
 ## Installation
 
