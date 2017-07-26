@@ -27,7 +27,7 @@ RCT_EXPORT_METHOD(
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (_initialised) {
-		reject(lRejectCode, @"Apptentive is already initialised");
+		reject(kRejectCode, @"Apptentive is already initialised", nil);
 		return;
 	}
 	if (!appKey || [appKey isEqualToString:@""]) {
@@ -57,11 +57,10 @@ RCT_EXPORT_METHOD(
 
 RCT_EXPORT_METHOD(
 	presentMessageCenterWithResolver:(RCTPromiseResolveBlock)resolve
-	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (!_initialised) {
-		reject(lRejectCode, @"Apptentive is not initialised");
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -75,7 +74,7 @@ RCT_EXPORT_METHOD(
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (!_initialised) {
-		reject(lRejectCode, @"Apptentive is not initialised");
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
 	if (!customData) {
@@ -95,7 +94,7 @@ RCT_EXPORT_METHOD(
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (!_initialised) {
-		reject(lRejectCode, @"Apptentive is not initialised");
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
 	if (!event || [event isEqualToString:@""]) {
@@ -109,13 +108,13 @@ RCT_EXPORT_METHOD(
 }
 
 RCT_EXPORT_METHOD(
-	engageEvent:(NSString *)event
-	withCustomData:(NSDictionary *)customData
+	engageEventWithCustomData:(NSString *)event
+	customData:(NSDictionary *)customData
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (!_initialised) {
-		reject(lRejectCode, @"Apptentive is not initialised");
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
 	if (!event || [event isEqualToString:@""]) {
