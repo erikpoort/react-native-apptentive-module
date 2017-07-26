@@ -98,4 +98,41 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 		boolean shown = Apptentive.showMessageCenter(getReactApplicationContext(), hashMap);
 		promise.resolve(shown);
 	}
+
+	@ReactMethod
+	public void engageEvent(String event, Promise promise) {
+		if (!_initialised) {
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (event == null || event.isEmpty()) {
+			promise.reject(APPTENTIVE, "Your event is empty");
+			return;
+		}
+
+		boolean engaged = Apptentive.engage(getReactApplicationContext(), event);
+		promise.resolve(engaged);
+	}
+
+	@ReactMethod
+	public void engageEventWithCustomData(String event, ReadableMap customData, Promise promise) {
+		if (!_initialised) {
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (event == null || event.isEmpty()) {
+			promise.reject(APPTENTIVE, "Your event is empty");
+			return;
+		}
+		if (!(customData instanceof ReadableNativeMap)) {
+			promise.reject(APPTENTIVE, "Apptentive can't handle this customData");
+			return;
+		}
+
+		ReadableNativeMap nativeMap = (ReadableNativeMap) customData;
+		HashMap<String, Object> hashMap = nativeMap.toHashMap();
+
+		boolean engaged = Apptentive.engage(getReactApplicationContext(), event, hashMap);
+		promise.resolve(engaged);
+	}
 }
