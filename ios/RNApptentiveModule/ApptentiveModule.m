@@ -63,7 +63,11 @@ RCT_EXPORT_METHOD(
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
-	
+	if (![Apptentive shared].canShowMessageCenter) {
+		reject(kRejectCode, @"Apptentive message center can't be shown", nil);
+		return;
+	}
+
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController];
 	resolve(@(presented));
@@ -76,6 +80,10 @@ RCT_EXPORT_METHOD(
 ) {
 	if (!_initialised) {
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (![Apptentive shared].canShowMessageCenter) {
+		reject(kRejectCode, @"Apptentive message center can't be shown", nil);
 		return;
 	}
 	if (!customData) {
