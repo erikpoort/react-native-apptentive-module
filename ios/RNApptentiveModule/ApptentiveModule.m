@@ -12,6 +12,9 @@
 static NSString *const kRejectCode = @"apptentive";
 
 @implementation ApptentiveModule
+{
+	BOOL _initialised;
+}
 RCT_EXPORT_MODULE();
 
 #pragma mark - Configuration
@@ -23,6 +26,10 @@ RCT_EXPORT_METHOD(
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
+	if (_initialised) {
+		reject(lRejectCode, @"Apptentive is already initialised");
+		return;
+	}
 	if (!appKey || [appKey isEqualToString:@""]) {
 		reject(kRejectCode, @"Your appKey is empty", nil);
 		return;
@@ -39,6 +46,7 @@ RCT_EXPORT_METHOD(
 	if (configuration) {
 		configuration.appID = appleID;
 		[Apptentive registerWithConfiguration:configuration];
+		_initialised = YES;
 		resolve(configuration.distributionName);
 	} else {
 		reject(kRejectCode, @"Configuration returned nil", nil);
@@ -49,24 +57,34 @@ RCT_EXPORT_METHOD(
 
 RCT_EXPORT_METHOD(
 	presentMessageCenterWithResolver:(RCTPromiseResolveBlock)resolve
-	callback:(RCTResponseSenderBlock)callback
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
 ) {
+	if (!_initialised) {
+		reject(lRejectCode, @"Apptentive is not initialised");
+		return;
+	}
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController];
-	callback(@[@(presented)]);
+	resolve(@(presented));
 }
 
 RCT_EXPORT_METHOD(
 	presentMessageCenterWithCustomData:(NSDictionary *)customData
-	callback:(RCTResponseSenderBlock)callback
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
 ) {
+	if (!_initialised) {
+		reject(lRejectCode, @"Apptentive is not initialised");
+		return;
+	}
 	if (!customData) {
 		customData = @{};
 	}
 
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController withCustomData:customData];
-	callback(@[@(presented)]);
+	resolve(@(presented));
 }
 
 #pragma mark - Events
@@ -76,6 +94,10 @@ RCT_EXPORT_METHOD(
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
+	if (!_initialised) {
+		reject(lRejectCode, @"Apptentive is not initialised");
+		return;
+	}
 	if (!event || [event isEqualToString:@""]) {
 		reject(kRejectCode, @"Your event is empty", nil);
 		return;
@@ -92,6 +114,10 @@ RCT_EXPORT_METHOD(
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
+	if (!_initialised) {
+		reject(lRejectCode, @"Apptentive is not initialised");
+		return;
+	}
 	if (!event || [event isEqualToString:@""]) {
 		reject(kRejectCode, @"Your event is empty", nil);
 		return;
