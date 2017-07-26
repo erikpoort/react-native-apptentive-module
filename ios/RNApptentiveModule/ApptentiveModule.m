@@ -15,7 +15,7 @@ static NSString *const kRejectCode = @"apptentive";
 {
 	BOOL _initialised;
 }
-RCT_EXPORT_MODULE(@"RNApptentiveModule");
+RCT_EXPORT_MODULE();
 
 #pragma mark - Configuration
 
@@ -56,13 +56,14 @@ RCT_EXPORT_METHOD(
 #pragma mark - Message Center
 
 RCT_EXPORT_METHOD(
-	presentMessageCenterWithResolver:(RCTPromiseResolveBlock)resolve
+	presentMessageCenter:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
 	if (!_initialised) {
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
+	
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController];
 	resolve(@(presented));

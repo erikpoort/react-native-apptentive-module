@@ -1,24 +1,17 @@
 import { NativeModules } from 'react-native';
-const { RNApptentiveModule } = NativeModules;
+const { ApptentiveModule } = NativeModules;
+import { init } from './platform-specific';
 
-/**
- * Configure Apptentive using you key and signature.
- * You can add an optional AppleID to redirect the user to the App Store
- * @param appKey Found in Apptentive Dashboard
- * @param appSignature Found in Apptentive Dashboard
- * @param appleID optional Found in iTunesConnect
- * @return Promise
- */
-function registerWithAppKey(appKey, appSignature, appleID) {
-  return ApptentiveModule.registerWithAppKey(appKey, appSignature, appleID);
+function register(appKey, appSignature, ...args) {
+  return init(ApptentiveModule, appKey, appSignature, args[0])
 }
 
 /**
  * Present the feedback view
  * @return Promise
  */
-function presentMessageCenterWithResolver() {
-  return ApptentiveModule.presentMessageCenterWithResolver();
+function presentMessageCenter() {
+  return ApptentiveModule.presentMessageCenter();
 }
 
 /**
@@ -50,5 +43,6 @@ function engageEventWithCustomData(event, customData) {
 }
 
 module.exports = {
-  registerWithAppKey,
+  register,
+  presentMessageCenter,
 }

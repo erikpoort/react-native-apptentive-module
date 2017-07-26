@@ -1,5 +1,7 @@
 package com.mediamonks.rnapptentivemodule;
 
+import android.app.Application;
+
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
@@ -17,11 +19,20 @@ import java.util.List;
 
 public class RNApptentivePackage implements ReactPackage
 {
+	private final Application _application;
+
+	public RNApptentivePackage(Application application)
+	{
+		super();
+
+		this._application = application;
+	}
+
 	@Override
 	public List<NativeModule> createNativeModules(ReactApplicationContext reactContext)
 	{
 		List<NativeModule> modules = new ArrayList<>();
-		modules.add(new RNApptentiveModule(reactContext));
+		modules.add(new RNApptentiveModule(reactContext, this._application));
 		return modules;
 	}
 
