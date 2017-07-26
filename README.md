@@ -11,18 +11,17 @@ react-native link react-native-apptentive-module
 ```
 
 ### iOS
-iOS is depending on CocoaPods. Follow the Apptentive guides to learn how to.
-You don't need to add any code in AppDelegate.m.
+iOS is depending on CocoaPods. Follow the Apptentive guides to learn how to add apptentive.
 
 ### Android
 Android needs some extra attention as well, because Apptentive needs a reference to your 
 Application. In your Application class, make sure the package is added as followed:
 ```java
 new RNApptentivePackage(this)
-```
+``` 
 
 ## Usage
-For now, not every feature is supported.
+Everything is handled in JS, no native code necessary, other than described above. 
 ```js
 // Import
 import Apptentive from 'react-native-apptentive-module';
