@@ -1,6 +1,6 @@
 {
   "name": "react-native-apptentive-module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Apptentive 4.0.0 ReactNative module.",
   "files": ["src", "ios", "android"],
   "main": "src/index.js",
