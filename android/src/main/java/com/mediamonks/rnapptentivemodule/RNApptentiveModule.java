@@ -1,6 +1,7 @@
 package com.mediamonks.rnapptentivemodule;
 
 import android.app.Application;
+import android.os.Handler;
 
 import com.apptentive.android.sdk.Apptentive;
 import com.facebook.react.bridge.Promise;
@@ -9,10 +10,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableNativeMap;
-import com.facebook.react.bridge.ReadableMapKeySetIterator;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by erik on 26/07/2017.
@@ -39,100 +38,167 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 	}
 
 	@ReactMethod
-	public void register(String appKey, String signature, Promise promise) {
-		if (_initialised) {
+	public void register(final String appKey, final String signature, final Promise promise)
+	{
+		if (_initialised)
+		{
 			promise.reject(APPTENTIVE, "Apptentive is already initialised");
 			return;
 		}
-		if (appKey == null || appKey.isEmpty()) {
+		if (appKey == null || appKey.isEmpty())
+		{
 			promise.reject(APPTENTIVE, "Your appKey is empty");
+
 			return;
 		}
-		if (signature == null || signature.isEmpty()) {
+		if (signature == null || signature.isEmpty())
+		{
 			promise.reject(APPTENTIVE, "Your signature is empty");
 			return;
 		}
 
-		Apptentive.register(this._application, appKey, signature);
-		promise.resolve(true);
-		_initialised = true;
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.register(_application, appKey, signature);
+				promise.resolve(true);
+				_initialised = true;
+			}
+		};
+		handler.post(runnable);
 	}
 
 	@ReactMethod
-	public void presentMessageCenter(Promise promise) {
-		if (!_initialised) {
+	public void presentMessageCenter(final Promise promise)
+	{
+		if (!_initialised)
+		{
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (!Apptentive.canShowMessageCenter()) {
+		if (!Apptentive.canShowMessageCenter())
+		{
 			promise.reject(APPTENTIVE, "Apptentive message center can't be shown");
 			return;
 		}
 
-		boolean shown = Apptentive.showMessageCenter(getReactApplicationContext());
-		promise.resolve(shown);
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				boolean shown = Apptentive.showMessageCenter(getReactApplicationContext());
+				promise.resolve(shown);
+			}
+		};
+		handler.post(runnable);
 	}
 
 	@ReactMethod
-	public void presentMessageCenterWithCustomData(ReadableMap customData, Promise promise) {
-		if (customData == null) {
+	public void presentMessageCenterWithCustomData(ReadableMap customData, final Promise promise)
+	{
+		if (customData == null)
+		{
 			this.presentMessageCenter(promise);
 			return;
 		}
-		if (!_initialised) {
+		if (!_initialised)
+		{
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (!Apptentive.canShowMessageCenter()) {
+		if (!Apptentive.canShowMessageCenter())
+		{
 			promise.reject(APPTENTIVE, "Apptentive message center can't be shown");
 			return;
 		}
-		if (!(customData instanceof ReadableNativeMap)) {
+		if (!(customData instanceof ReadableNativeMap))
+		{
 			promise.reject(APPTENTIVE, "Apptentive can't handle this customData");
 			return;
 		}
 
 		ReadableNativeMap nativeMap = (ReadableNativeMap) customData;
-		HashMap<String, Object> hashMap = nativeMap.toHashMap();
+		final HashMap<String, Object> hashMap = nativeMap.toHashMap();
 
-		boolean shown = Apptentive.showMessageCenter(getReactApplicationContext(), hashMap);
-		promise.resolve(shown);
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				boolean shown = Apptentive.showMessageCenter(getReactApplicationContext(), hashMap);
+				promise.resolve(shown);
+			}
+		};
+		handler.post(runnable);
+
 	}
 
 	@ReactMethod
-	public void engageEvent(String event, Promise promise) {
-		if (!_initialised) {
+	public void engageEvent(final String event, final Promise promise)
+	{
+		if (!_initialised)
+		{
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (event == null || event.isEmpty()) {
+		if (event == null || event.isEmpty())
+		{
 			promise.reject(APPTENTIVE, "Your event is empty");
 			return;
 		}
 
-		boolean engaged = Apptentive.engage(getReactApplicationContext(), event);
-		promise.resolve(engaged);
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				boolean engaged = Apptentive.engage(getReactApplicationContext(), event);
+				promise.resolve(engaged);
+			}
+		};
+		handler.post(runnable);
+
 	}
 
 	@ReactMethod
-	public void engageEventWithCustomData(String event, ReadableMap customData, Promise promise) {
-		if (!_initialised) {
+	public void engageEventWithCustomData(final String event, ReadableMap customData, final Promise promise)
+	{
+		if (!_initialised)
+		{
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (event == null || event.isEmpty()) {
+		if (event == null || event.isEmpty())
+		{
 			promise.reject(APPTENTIVE, "Your event is empty");
 			return;
 		}
-		if (!(customData instanceof ReadableNativeMap)) {
+		if (!(customData instanceof ReadableNativeMap))
+		{
 			promise.reject(APPTENTIVE, "Apptentive can't handle this customData");
 			return;
 		}
 
 		ReadableNativeMap nativeMap = (ReadableNativeMap) customData;
-		HashMap<String, Object> hashMap = nativeMap.toHashMap();
+		final HashMap<String, Object> hashMap = nativeMap.toHashMap();
 
-		boolean engaged = Apptentive.engage(getReactApplicationContext(), event, hashMap);
-		promise.resolve(engaged);
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				boolean engaged = Apptentive.engage(getReactApplicationContext(), event, hashMap);
+				promise.resolve(engaged);
+			}
+		};
+		handler.post(runnable);
 	}
 }
