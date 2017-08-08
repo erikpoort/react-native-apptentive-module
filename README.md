@@ -1,6 +1,6 @@
 # react-native-apptentive-module
 ReactNative module for Apptentive 4.0.0+
-Version 1.0.3
+Version 1.1.0
 
 ## Installation
 
@@ -61,10 +61,50 @@ Apptentive.presentMessageCenterWithCustomData(customData);
 Apptentive.engageEvent(event);
 
 /**
- * Log an event with custom data to apptentive
- * @param event String event name
- * @param customData optional Object
- * @return Promise with success boolean or error
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value String value
+ * @return Promise returning true or error
  */
-Apptentive.engageEventWithCustomData(event, customData);
+Apptentive.addPersonDataString(value, key);
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value Number value
+ * @return Promise returning true or error
+ */
+Apptentive.addPersonDataNumber(value, key);
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value Bool value
+ * @return Promise returning true or error
+ */
+Apptentive.addPersonDataBool(value, key);
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value String value
+ * @return Promise returning true or error
+ */
+Apptentive.addDeviceDataString(value, key);
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Number value
+ * @return Promise returning true or error
+ */
+Apptentive.addDeviceDataNumber(value, key);
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Bool value
+ * @return Promise returning true or error
+ */
+Apptentive.addDeviceDataBool(value, key);
 ```
