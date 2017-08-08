@@ -68,8 +68,7 @@ RCT_EXPORT_METHOD(
 		return;
 	}
 
-	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController];
+	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:[self viewController]];
 	resolve(@(presented));
 }
 
@@ -90,8 +89,7 @@ RCT_EXPORT_METHOD(
 		customData = @{};
 	}
 
-	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:viewController withCustomData:customData];
+	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:[self viewController] withCustomData:customData];
 	resolve(@(presented));
 }
 
@@ -111,14 +109,15 @@ RCT_EXPORT_METHOD(
 		return;
 	}
 
-	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	BOOL engaged = [[Apptentive shared] engage:event fromViewController:viewController];
+	BOOL engaged = [[Apptentive shared] engage:event fromViewController:[self viewController]];
 	resolve(@(engaged));
 }
 
+#pragma mark - Adding data
+
 RCT_EXPORT_METHOD(
-	engageEventWithCustomData:(NSString *)event
-	customData:(NSDictionary *)customData
+	addPersonDataString:(NSString *)string
+	withKey:(NSString *)key
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
@@ -126,17 +125,134 @@ RCT_EXPORT_METHOD(
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
-	if (!event || [event isEqualToString:@""]) {
-		reject(kRejectCode, @"Your event is empty", nil);
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
 		return;
 	}
-	if (!customData) {
-		customData = @{};
+	if (!string || [string isEqualToString:@""]) {
+		reject(kRejectCode, @"Your string is empty", nil);
+		return;
 	}
 
+	[[Apptentive shared] addCustomPersonDataString:string withKey:key];
+	resolve(@YES);
+}
+
+RCT_EXPORT_METHOD(
+	addPersonDataNumber:(nonnull NSNumber *)number
+	withKey:(NSString *)key
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
+) {
+	if (!_initialised) {
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
+		return;
+	}
+	if (!number) {
+		reject(kRejectCode, @"Your string is empty", nil);
+		return;
+	}
+
+	[[Apptentive shared] addCustomPersonDataNumber:number withKey:key];
+	resolve(@YES);
+}
+
+RCT_EXPORT_METHOD(
+	addPersonDataBool:(BOOL)boolean
+	withKey:(NSString *)key
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
+) {
+	if (!_initialised) {
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
+		return;
+	}
+
+	[[Apptentive shared] addCustomPersonDataBool:boolean withKey:key];
+	resolve(@YES);
+}
+
+RCT_EXPORT_METHOD(
+	addDeviceDataString:(NSString *)string
+	withKey:(NSString *)key
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
+) {
+	if (!_initialised) {
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
+		return;
+	}
+	if (!string || [string isEqualToString:@""]) {
+		reject(kRejectCode, @"Your string is empty", nil);
+		return;
+	}
+
+	[[Apptentive shared] addCustomDeviceDataString:string withKey:key];
+	resolve(@YES);
+}
+
+RCT_EXPORT_METHOD(
+	addDeviceDataNumber:(nonnull NSNumber *)number
+	withKey:(NSString *)key
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
+) {
+	if (!_initialised) {
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
+		return;
+	}
+	if (!number) {
+		reject(kRejectCode, @"Your string is empty", nil);
+		return;
+	}
+
+	[[Apptentive shared] addCustomDeviceDataNumber:number withKey:key];
+	resolve(@YES);
+}
+
+RCT_EXPORT_METHOD(
+	addDeviceDataBool:(BOOL)boolean
+	withKey:(NSString *)key
+	resolver:(RCTPromiseResolveBlock)resolve
+	rejecter:(RCTPromiseRejectBlock)reject
+) {
+	if (!_initialised) {
+		reject(kRejectCode, @"Apptentive is not initialised", nil);
+		return;
+	}
+	if (!key || [key isEqualToString:@""]) {
+		reject(kRejectCode, @"Your key is empty", nil);
+		return;
+	}
+
+	[[Apptentive shared] addCustomDeviceDataBool:boolean withKey:key];
+	resolve(@YES);
+}
+
+#pragma mark - Helpers
+
+- (UIViewController *)viewController {
 	UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	BOOL engaged = [[Apptentive shared] engage:event withCustomData:customData fromViewController:viewController];
-	resolve(@(engaged));
+	while (viewController.presentedViewController) {
+		viewController = viewController.presentedViewController;
+	}
+	return viewController;
 }
 
 @end
