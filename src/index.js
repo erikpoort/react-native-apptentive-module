@@ -145,9 +145,11 @@ module.exports = {
   presentMessageCenter,
   presentMessageCenterWithCustomData,
   engageEvent,
+  addPersonData,
   addPersonDataString,
   addPersonDataNumber,
   addPersonDataBool,
+  addDeviceData,
   addDeviceDataString,
   addDeviceDataNumber,
   addDeviceDataBool

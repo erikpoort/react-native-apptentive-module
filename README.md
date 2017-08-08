@@ -63,6 +63,16 @@ Apptentive.engageEvent(event);
 /**
  * Send person data to apptentive
  * @param key Data key
+ * @param value Value
+ * @return Promise returning true or error
+ */
+Apptentive.addPersonData("key1", "string");
+Apptentive.addPersonData("key2", 123);
+Apptentive.addPersonData("key3", true);
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
  * @param value String value
  * @return Promise returning true or error
  */
@@ -83,6 +93,16 @@ Apptentive.addPersonDataNumber(value, key);
  * @return Promise returning true or error
  */
 Apptentive.addPersonDataBool(value, key);
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Value
+ * @return Promise returning true or error
+ */
+Apptentive.addDeviceData("key1", "string");
+Apptentive.addDeviceData("key2", 123);
+Apptentive.addDeviceData("key3", true);
 
 /**
  * Send device data to apptentive
