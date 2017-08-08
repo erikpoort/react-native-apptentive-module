@@ -41,13 +41,63 @@ function engageEvent(event) {
 }
 
 /**
- * Log an event with custom data to apptentive
- * @param event String event name
- * @param customData optional Object
- * @return Promise with success boolean or error
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value String value
+ * @return Promise returning true or error
  */
-function engageEventWithCustomData(event, customData) {
-  return ApptentiveModule.engageEventWithCustomData(event, customData);
+function addPersonDataString(key, value) {
+  return ApptentiveModule.addPersonDataString(value, key);
+}
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value Number value
+ * @return Promise returning true or error
+ */
+function addPersonDataNumber(key, value) {
+  return ApptentiveModule.addPersonDataNumber(value, key);
+}
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
+ * @param value Bool value
+ * @return Promise returning true or error
+ */
+function addPersonDataBool(key, value) {
+  return ApptentiveModule.addPersonDataBool(value, key);
+}
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value String value
+ * @return Promise returning true or error
+ */
+function addDeviceDataString(key, value) {
+  return ApptentiveModule.addDeviceDataString(value, key);
+}
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Number value
+ * @return Promise returning true or error
+ */
+function addDeviceDataNumber(key, value) {
+  return ApptentiveModule.addDeviceDataNumber(value, key);
+}
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Bool value
+ * @return Promise returning true or error
+ */
+function addDeviceDataBool(key, value) {
+  return ApptentiveModule.addDeviceDataBool(value, key);
 }
 
 module.exports = {
@@ -55,5 +105,10 @@ module.exports = {
   presentMessageCenter,
   presentMessageCenterWithCustomData,
   engageEvent,
-  engageEventWithCustomData
+  addPersonDataString,
+  addPersonDataNumber,
+  addPersonDataBool,
+  addDeviceDataString,
+  addDeviceDataNumber,
+  addDeviceDataBool
 }

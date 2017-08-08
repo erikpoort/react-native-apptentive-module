@@ -136,7 +136,6 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			}
 		};
 		handler.post(runnable);
-
 	}
 
 	@ReactMethod
@@ -164,30 +163,26 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			}
 		};
 		handler.post(runnable);
-
 	}
 
 	@ReactMethod
-	public void engageEventWithCustomData(final String event, ReadableMap customData, final Promise promise)
+	public void addPersonDataString(final String string, final String key, final Promise promise)
 	{
 		if (!_initialised)
 		{
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (event == null || event.isEmpty())
+		if (string == null || string.isEmpty())
 		{
-			promise.reject(APPTENTIVE, "Your event is empty");
+			promise.reject(APPTENTIVE, "Your string is empty");
 			return;
 		}
-		if (!(customData instanceof ReadableNativeMap))
+		if (key == null || key.isEmpty())
 		{
-			promise.reject(APPTENTIVE, "Apptentive can't handle this customData");
+			promise.reject(APPTENTIVE, "Your key is empty");
 			return;
 		}
-
-		ReadableNativeMap nativeMap = (ReadableNativeMap) customData;
-		final HashMap<String, Object> hashMap = nativeMap.toHashMap();
 
 		Handler handler = new Handler(_application.getMainLooper());
 		Runnable runnable = new Runnable()
@@ -195,8 +190,168 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			@Override
 			public void run()
 			{
-				boolean engaged = Apptentive.engage(getReactApplicationContext(), event, hashMap);
-				promise.resolve(engaged);
+				Apptentive.addCustomPersonData(key, string);
+				promise.resolve(true);
+			}
+		};
+		handler.post(runnable);
+	}
+
+	@ReactMethod
+	public void addPersonDataNumber(final Number number, final String key, final Promise promise)
+	{
+		if (!_initialised)
+		{
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (number == null)
+		{
+			promise.reject(APPTENTIVE, "Your number is empty");
+			return;
+		}
+		if (key == null || key.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your key is empty");
+			return;
+		}
+
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.addCustomPersonData(key, number);
+				promise.resolve(true);
+			}
+		};
+		handler.post(runnable);
+	}
+
+	@ReactMethod
+	public void addPersonDataBool(final Boolean bool, final String key, final Promise promise)
+	{
+		if (!_initialised)
+		{
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (bool == null)
+		{
+			promise.reject(APPTENTIVE, "Your bool is empty");
+			return;
+		}
+		if (key == null || key.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your key is empty");
+			return;
+		}
+
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.addCustomPersonData(key, bool);
+				promise.resolve(true);
+			}
+		};
+		handler.post(runnable);
+	}
+
+	@ReactMethod
+	public void addDeviceDataString(final String string, final String key, final Promise promise)
+	{
+		if (!_initialised)
+		{
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (string == null || string.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your string is empty");
+			return;
+		}
+		if (key == null || key.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your key is empty");
+			return;
+		}
+
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.addCustomDeviceData(key, string);
+				promise.resolve(true);
+			}
+		};
+		handler.post(runnable);
+	}
+
+	@ReactMethod
+	public void addDeviceDataNumber(final Number number, final String key, final Promise promise)
+	{
+		if (!_initialised)
+		{
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (number == null)
+		{
+			promise.reject(APPTENTIVE, "Your number is empty");
+			return;
+		}
+		if (key == null || key.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your key is empty");
+			return;
+		}
+
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.addCustomDeviceData(key, number);
+				promise.resolve(true);
+			}
+		};
+		handler.post(runnable);
+	}
+
+	@ReactMethod
+	public void addDeviceDataBool(final Boolean bool, final String key, final Promise promise)
+	{
+		if (!_initialised)
+		{
+			promise.reject(APPTENTIVE, "Apptentive is not initialised");
+			return;
+		}
+		if (bool == null)
+		{
+			promise.reject(APPTENTIVE, "Your bool is empty");
+			return;
+		}
+		if (key == null || key.isEmpty())
+		{
+			promise.reject(APPTENTIVE, "Your key is empty");
+			return;
+		}
+
+		Handler handler = new Handler(_application.getMainLooper());
+		Runnable runnable = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Apptentive.addCustomDeviceData(key, bool);
+				promise.resolve(true);
 			}
 		};
 		handler.post(runnable);
