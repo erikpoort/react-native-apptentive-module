@@ -43,6 +43,26 @@ function engageEvent(event) {
 /**
  * Send person data to apptentive
  * @param key Data key
+ * @param value Value
+ * @return Promise returning true or error
+ */
+function addPersonData(key, value) {
+  if (value !== null && value !== undefined) {
+    const type = typeof value;
+    if (type === 'string') {
+      return this.addPersonDataString(key, value);
+    } else if (type === 'number') {
+      return this.addPersonDataNumber(key, value);
+    } else if (type === 'boolean') {
+      return this.addPersonDataBool(key, value);
+    }
+  }
+  return Promise.reject("Your value should be either a string, number or bool")
+}
+
+/**
+ * Send person data to apptentive
+ * @param key Data key
  * @param value String value
  * @return Promise returning true or error
  */
@@ -68,6 +88,26 @@ function addPersonDataNumber(key, value) {
  */
 function addPersonDataBool(key, value) {
   return ApptentiveModule.addPersonDataBool(value, key);
+}
+
+/**
+ * Send device data to apptentive
+ * @param key Data key
+ * @param value Value
+ * @return Promise returning true or error
+ */
+function addDeviceData(key, value) {
+  if (value !== null && value !== undefined) {
+    const type = typeof value;
+    if (type === 'string') {
+      return this.addDeviceDataString(key, value);
+    } else if (type === 'number') {
+      return this.addDeviceDataNumber(key, value);
+    } else if (type === 'boolean') {
+      return this.addDeviceDataBool(key, value);
+    }
+  }
+  return Promise.reject("Your value should be either a string, number or bool")
 }
 
 /**
@@ -105,9 +145,11 @@ module.exports = {
   presentMessageCenter,
   presentMessageCenterWithCustomData,
   engageEvent,
+  addPersonData,
   addPersonDataString,
   addPersonDataNumber,
   addPersonDataBool,
+  addDeviceData,
   addDeviceDataString,
   addDeviceDataNumber,
   addDeviceDataBool
