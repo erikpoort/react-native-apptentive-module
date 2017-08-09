@@ -8,10 +8,11 @@ import { init } from './platform-specific';
  * @param appKey Found in Apptentive Dashboard
  * @param appSignature Found in Apptentive Dashboard
  * @param appleID optional Found in iTunesConnect
+ * @param debug optional Only works for iOS
  * @return Promise
  */
 function register(appKey, appSignature, ...args) {
-  return init(ApptentiveModule, appKey, appSignature, args[0])
+  return init(ApptentiveModule, appKey, appSignature, ...args)
 }
 
 /**
