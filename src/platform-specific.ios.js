@@ -7,7 +7,7 @@
  * @param debug Set debug
  * @return Promise
  */
-function init(Module, appKey, appSignature, appleID, debug) {
+function init(Module, appKey, appSignature, appleID, debug = false) {
   return Module.registerWithAppKey(appKey, appSignature, appleID, debug);
 }
 

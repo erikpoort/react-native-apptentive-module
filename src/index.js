@@ -12,7 +12,7 @@ import { init } from './platform-specific';
  * @return Promise
  */
 function register(appKey, appSignature, ...args) {
-  return init(ApptentiveModule, appKey, appSignature, ...args)
+  return init(ApptentiveModule, appKey, appSignature, args[0], args[1])
 }
 
 /**
