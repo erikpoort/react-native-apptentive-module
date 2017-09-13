@@ -9,7 +9,7 @@
 #import <apptentive-ios/Apptentive.h>
 #import "ApptentiveModule.h"
 
-static NSString *const kRejectCode = @"apptentive";
+static NSString *const kRejectCode = @"ApptentiveModule";
 
 @implementation ApptentiveModule
 {
