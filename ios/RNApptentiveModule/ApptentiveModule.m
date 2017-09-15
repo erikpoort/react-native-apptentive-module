@@ -23,6 +23,7 @@ RCT_EXPORT_METHOD(
 	registerWithAppKey:(NSString *)appKey
 	signature:(NSString *)signature
 	appleID:(NSString *)appleID
+	debug:(BOOL)debug
 	resolver:(RCTPromiseResolveBlock)resolve
 	rejecter:(RCTPromiseRejectBlock)reject
 ) {
@@ -42,6 +43,8 @@ RCT_EXPORT_METHOD(
 	ApptentiveConfiguration *configuration = [ApptentiveConfiguration
 			configurationWithApptentiveKey:appKey
 			apptentiveSignature:signature];
+
+	[configuration setLogLevel:debug ? ApptentiveLogLevelVerbose : ApptentiveLogLevelCrit];
 
 	if (configuration) {
 		configuration.appID = appleID;
