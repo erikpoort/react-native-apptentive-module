@@ -1,7 +1,7 @@
 {
   "name": "react-native-apptentive-module",
-  "version": "1.2.0",
-  "description": "Apptentive 5.0.1 ReactNative module.",
+  "version": "1.2.1",
+  "description": "Apptentive 5.0.+ ReactNative module.",
   "files": ["src", "ios", "android"],
   "main": "src/index.js",
   "scripts": {

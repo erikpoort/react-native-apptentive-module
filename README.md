@@ -1,6 +1,6 @@
 # react-native-apptentive-module
-ReactNative module for Apptentive 5.0.1
-Version 1.2.0
+ReactNative module for Apptentive 5.0.+
+Version 1.2.1
 
 ## Installation
 
