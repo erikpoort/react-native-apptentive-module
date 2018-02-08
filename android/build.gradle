@@ -33,6 +33,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.apptentive:apptentive-android:4.1.4'
+    compile 'com.apptentive:apptentive-android:5.0.0'
     compile 'com.facebook.react:react-native:+'
 }

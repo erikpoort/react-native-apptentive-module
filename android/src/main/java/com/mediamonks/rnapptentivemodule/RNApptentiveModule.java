@@ -1,7 +1,6 @@
 package com.mediamonks.rnapptentivemodule;
 
 import android.app.Application;
-import android.os.Handler;
 
 import com.apptentive.android.sdk.Apptentive;
 import com.facebook.react.bridge.Promise;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 
 class RNApptentiveModule extends ReactContextBaseJavaModule
 {
-	public static final String APPTENTIVE = "apptentive";
+	private static final String APPTENTIVE = "apptentive";
 	private final Application _application;
 	private boolean _initialised;
 
@@ -57,18 +56,9 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.register(_application, appKey, signature);
-				promise.resolve(true);
-				_initialised = true;
-			}
-		};
-		handler.post(runnable);
+		Apptentive.register(_application, appKey, signature);
+		promise.resolve(true);
+		_initialised = true;
 	}
 
 	@ReactMethod
@@ -79,27 +69,30 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (!Apptentive.canShowMessageCenter())
-		{
-			promise.reject(APPTENTIVE, "Apptentive message center can't be shown");
-			return;
-		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
+		Apptentive.canShowMessageCenter(new Apptentive.BooleanCallback()
 		{
-			@Override
-			public void run()
+			@Override public void onFinish(boolean canShowMessageCenter)
 			{
-				boolean shown = Apptentive.showMessageCenter(getReactApplicationContext());
-				promise.resolve(shown);
+				if (canShowMessageCenter)
+				{
+					Apptentive.showMessageCenter(getReactApplicationContext(), new Apptentive.BooleanCallback()
+					{
+						@Override public void onFinish(boolean shown)
+						{
+							promise.resolve(shown);
+						}
+					});
+				} else
+					{
+					promise.reject(APPTENTIVE, "Apptentive message center can't be shown");
+				}
 			}
-		};
-		handler.post(runnable);
+		});
 	}
 
 	@ReactMethod
-	public void presentMessageCenterWithCustomData(ReadableMap customData, final Promise promise)
+	public void presentMessageCenterWithCustomData(final ReadableMap customData, final Promise promise)
 	{
 		if (customData == null)
 		{
@@ -111,11 +104,6 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			promise.reject(APPTENTIVE, "Apptentive is not initialised");
 			return;
 		}
-		if (!Apptentive.canShowMessageCenter())
-		{
-			promise.reject(APPTENTIVE, "Apptentive message center can't be shown");
-			return;
-		}
 		if (!(customData instanceof ReadableNativeMap))
 		{
 			promise.reject(APPTENTIVE, "Apptentive can't handle this customData");
@@ -125,17 +113,19 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 		ReadableNativeMap nativeMap = (ReadableNativeMap) customData;
 		final HashMap<String, Object> hashMap = nativeMap.toHashMap();
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
+		Apptentive.canShowMessageCenter(new Apptentive.BooleanCallback()
 		{
-			@Override
-			public void run()
+			@Override public void onFinish(boolean canShowMessageCenter)
 			{
-				boolean shown = Apptentive.showMessageCenter(getReactApplicationContext(), hashMap);
-				promise.resolve(shown);
+				Apptentive.showMessageCenter(getReactApplicationContext(), new Apptentive.BooleanCallback()
+				{
+					@Override public void onFinish(boolean shown)
+					{
+						promise.resolve(shown);
+					}
+				}, hashMap);
 			}
-		};
-		handler.post(runnable);
+		});
 	}
 
 	@ReactMethod
@@ -151,18 +141,13 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			promise.reject(APPTENTIVE, "Your event is empty");
 			return;
 		}
-
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
+		Apptentive.engage(getReactApplicationContext(), event, new Apptentive.BooleanCallback()
 		{
-			@Override
-			public void run()
+			@Override public void onFinish(boolean engaged)
 			{
-				boolean engaged = Apptentive.engage(getReactApplicationContext(), event);
 				promise.resolve(engaged);
 			}
-		};
-		handler.post(runnable);
+		});
 	}
 
 	@ReactMethod
@@ -184,17 +169,8 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomPersonData(key, string);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomPersonData(key, string);
+		promise.resolve(true);
 	}
 
 	@ReactMethod
@@ -216,17 +192,8 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomPersonData(key, number);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomPersonData(key, number);
+		promise.resolve(true);
 	}
 
 	@ReactMethod
@@ -248,17 +215,8 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomPersonData(key, bool);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomPersonData(key, bool);
+		promise.resolve(true);
 	}
 
 	@ReactMethod
@@ -280,17 +238,8 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomDeviceData(key, string);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomDeviceData(key, string);
+		promise.resolve(true);
 	}
 
 	@ReactMethod
@@ -312,17 +261,8 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomDeviceData(key, number);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomDeviceData(key, number);
+		promise.resolve(true);
 	}
 
 	@ReactMethod
@@ -344,16 +284,7 @@ class RNApptentiveModule extends ReactContextBaseJavaModule
 			return;
 		}
 
-		Handler handler = new Handler(_application.getMainLooper());
-		Runnable runnable = new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Apptentive.addCustomDeviceData(key, bool);
-				promise.resolve(true);
-			}
-		};
-		handler.post(runnable);
+		Apptentive.addCustomDeviceData(key, bool);
+		promise.resolve(true);
 	}
 }
