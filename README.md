@@ -1,6 +1,6 @@
 # react-native-apptentive-module
-ReactNative module for Apptentive 4.1.4
-Version 1.1.6
+ReactNative module for Apptentive 5.0.1
+Version 1.2.0
 
 ## Installation
 
@@ -13,6 +13,8 @@ react-native link react-native-apptentive-module
 
 ### iOS
 iOS is depending on CocoaPods. Follow the Apptentive guides to learn how to add apptentive.
+Pay extra attention if you can't or don't want to use `use_frameworks!`
+https://learn.apptentive.com/knowledge-base/ios-integration-reference/#cocoapods
 
 ### Android
 Android needs some extra attention as well, because Apptentive needs a reference to your 
