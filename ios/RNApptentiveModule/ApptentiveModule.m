@@ -66,13 +66,18 @@ RCT_EXPORT_METHOD(
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
-	if (![Apptentive shared].canShowMessageCenter) {
-		reject(kRejectCode, @"Apptentive message center can't be shown", nil);
-		return;
-	}
 
-	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:[self viewController]];
-	resolve(@(presented));
+    [[Apptentive shared] queryCanShowMessageCenterWithCompletion:^(BOOL canShowMessageCenter) {
+        if (canShowMessageCenter) {
+            [[Apptentive shared] presentMessageCenterFromViewController:self.viewController completion:^(BOOL presented) {
+                if (resolve) {
+                    resolve(@(presented));
+                }
+            }];
+        } else if (reject) {
+            reject(kRejectCode, @"Apptentive message center can't be shown", nil);
+        }
+    }];
 }
 
 RCT_EXPORT_METHOD(
@@ -84,16 +89,22 @@ RCT_EXPORT_METHOD(
 		reject(kRejectCode, @"Apptentive is not initialised", nil);
 		return;
 	}
-	if (![Apptentive shared].canShowMessageCenter) {
-		reject(kRejectCode, @"Apptentive message center can't be shown", nil);
-		return;
-	}
+
 	if (!customData) {
 		customData = @{};
 	}
 
-	BOOL presented = [[Apptentive shared] presentMessageCenterFromViewController:[self viewController] withCustomData:customData];
-	resolve(@(presented));
+    [[Apptentive shared] queryCanShowMessageCenterWithCompletion:^(BOOL canShowMessageCenter) {
+        if (canShowMessageCenter) {
+            [[Apptentive shared] presentMessageCenterFromViewController:self.viewController withCustomData:customData completion:^(BOOL presented) {
+                if (resolve) {
+                    resolve(@(presented));
+                }
+            }];
+        } else if (reject) {
+            reject(kRejectCode, @"Apptentive message center can't be shown", nil);
+        }
+    }];
 }
 
 #pragma mark - Events
@@ -112,8 +123,11 @@ RCT_EXPORT_METHOD(
 		return;
 	}
 
-	BOOL engaged = [[Apptentive shared] engage:event fromViewController:[self viewController]];
-	resolve(@(engaged));
+    [[Apptentive shared] engage:event fromViewController:self.viewController completion:^(BOOL engaged) {
+        if (resolve) {
+            resolve(@(engaged));
+        }
+    }];
 }
 
 #pragma mark - Adding data
