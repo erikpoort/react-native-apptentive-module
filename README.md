@@ -13,6 +13,8 @@ react-native link react-native-apptentive-module
 
 ### iOS
 iOS is depending on CocoaPods. Follow the Apptentive guides to learn how to add apptentive.
+Pay extra attention if you can't or don't want to use `use_frameworks!`
+https://learn.apptentive.com/knowledge-base/ios-integration-reference/#cocoapods
 
 ### Android
 Android needs some extra attention as well, because Apptentive needs a reference to your 
