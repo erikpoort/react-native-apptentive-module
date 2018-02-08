@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 MediaMonks. All rights reserved.
 //
 
-#import <apptentive-ios/Apptentive.h>
+#import <Apptentive/Apptentive.h>
 #import "ApptentiveModule.h"
 
 static NSString *const kRejectCode = @"ApptentiveModule";
