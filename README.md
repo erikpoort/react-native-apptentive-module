@@ -20,7 +20,7 @@ https://learn.apptentive.com/knowledge-base/ios-integration-reference/#cocoapods
 Android needs some extra attention as well, because Apptentive needs a reference to your 
 Application. In your Application class, make sure the package is added as followed:
 ```java
-new RNApptentivePackage(this)
+new RNApptentivePackage(MainApplication.this)
 ``` 
 
 ## Usage
