@@ -2,6 +2,8 @@
 ReactNative module for [Apptentive](https://github.com/apptentive/apptentive-ios) 5.0.+
 Version 1.2.1
 
+[Example project](https://github.com/erikpoort/react-native-apptentive-module-Example)
+
 ## Installation
 
 ```bash
