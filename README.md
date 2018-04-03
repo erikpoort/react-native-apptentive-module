@@ -2,10 +2,11 @@
 ReactNative module for [Apptentive](https://github.com/apptentive/apptentive-ios) 5.0.+
 Version 1.2.1
 
-## DEPRECATED
-This repo is no longer supported. Please, consider using the official [Apptentive React Native Module](https://github.com/apptentive/apptentive-react-native) instead.
-
 [Example project](https://github.com/erikpoort/react-native-apptentive-module-Example)
+
+## Deprecated
+Apptentive released their own React Native module! 
+Please, consider using the official [Apptentive React Native Module](https://github.com/apptentive/apptentive-react-native) instead.
 
 ## Installation
 
